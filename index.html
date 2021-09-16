@@ -69,70 +69,31 @@
     </table>
     <hr>
     <h3>Code Display</h3>
-    <blockquote cite="https://en.wikipedia.org/wiki/String_(computer_science)">In computer programming, a string is
-        traditionally a sequence of characters, either as a literal constant or as some kind of variable. The latter may
-        allow its elements to be mutated and the length changed, or it may be fixed (after creation). A string is
-        generally considered as a data type and is often implemented as an array data structure of bytes (or words) that
-        stores a sequence of elements, typically characters, using some character encoding. String may also denote more
-        general arrays or other sequence (or list) data types and structure</blockquote>
-    <a href="https://cp-algorithms.com/string/suffix-tree-ukkonen.htm"> Link to the Code Source</a>
+    <blockquote cite="https://en.wikipedia.org/wiki/Fenwick_tree"> A Fenwick tree or binary indexed tree is a data
+        structure that can efficiently update elements and calculate prefix sums in a table of numbers.
+        This structure was proposed by Boris Ryabko in 1989[1] with a further modification published in 1992.[2] It has
+        subsequently become known under the name Fenwick tree after Peter Fenwick, who described this structure in his
+        1994 article. When compared with a flat array of numbers, the Fenwick tree achieves a much better balance
+        between operations: element update and prefix sum calculation. A flat array of {\displaystyle n}n numbers can
+        either store the elements or the prefix sums. In the first case, computing prefix sums requires linear time; in
+        the
+        second case, updating the array elements requires linear time (in both cases, the other operation can be
+        performed in constant time). Fenwick trees allow both operations to be performed in {\displaystyle O(\log
+        n)}O(\log n) time. This is achieved by representing the numbers as a tree, where the value of each node is the
+        sum of the numbers in that subtree. Link to the Code Source</blockquote>
+    <a href="https://en.wikipedia.org/wiki/Fenwick_tree">Link to the Fenwick tree</a>
     <pre>
-    sstring s;
-int n;
-
-struct node
- {
-    int l, r, par, link;
-    map<char,int> next;
-node (int l=0, int r=0, int par=-1)
-        : l(l), r(r), par(par), link(-1) {}
-    int len()  {  return r - l;  }
-    int &get (char c) {
-        if (!next.count(c))  next[c] = -1;
-        return next[c];
-    }
-
-struct state {
-    int v, pos;
-    state (int v, int pos) : v(v), pos(pos)  {}
-};
-state ptr (0, 0);
-
-state go (state st, int l, int r) {
-    while (l < r)
-        if (st.pos == t[st.v].len()) {
-            st = state (t[st.v].get( s[l] ), 0);
-            if (st.v == -1)  return st;
-        }
-        else {
-
-            if (r-l < t[st.v].len() - st.pos)
-                return state (st.v, st.pos + r-l);
-            l += t[st.v].len() - st.pos;
-        }
+        def sum(int r):
+        res = 0
+        while (r >= 0):
+            res += t[r]
+            r = g(r) - 1
+        return res
+    
+    def increase(int i, int delta):
+        for all j with g(j) <= i <= j:
+            t[j] += delta
 </pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
